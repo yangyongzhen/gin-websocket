@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>websocket测试</title>
+      <script type="text/javascript" src="/static/js/socket.io.js"></script> 
+      <script type="text/javascript">
+         function WebSocketTest(){
+             console.log("WebSocketTest")
+            //if ("WebSocket" in window){
+                console.log("您的浏览器支持 WebSocket!");
+                let ws = io.connect('ws://localhost:9090/ws')
+                ws.emit("chat","this is chat test")
+                ws.on('success', (data) => {
+                  console.log(data)
+                })
+
+                ws.on("disconnect",(data) => {
+                  console.log("disconnect")
+                })
+               /*
+               // 打开一个 web socket
+               var ws = new WebSocket("ws://localhost:9090/ws");
+               socket.emit("chat","chat test")
+               ws.onopen = function(){
+                  // Web Socket 已连接上，使用 send() 方法发送数据
+                  ws.send("发送数据");
+                  console.log("数据发送中...");
+               };
+                
+               ws.onmessage = function (evt) { 
+                  var received_msg = evt.data;
+                  console.log("数据已接收...");
+               };
+                
+               ws.onclose = function(){ 
+                  // 关闭 websocket
+                  console.log("连接已关闭..."); 
+               };
+               */
+            // }
+            // else{
+            //    // 浏览器不支持 WebSocket
+            //    console.log("您的浏览器不支持 WebSocket!");
+            // }
+         }
+      </script>
+        
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">运行 WebSocket test</a>
+      </div>
+      
+   </body>
+</html>
